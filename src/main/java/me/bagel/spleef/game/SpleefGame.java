@@ -1,4 +1,4 @@
-package me.bagel.spleef;
+package me.bagel.spleef.game;
 
 import java.util.List;
 

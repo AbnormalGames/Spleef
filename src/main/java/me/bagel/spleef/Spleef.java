@@ -1,5 +1,6 @@
 package me.bagel.spleef;
 
+import me.bagel.spleef.game.command.SpleefCommand;
 import net.minecraft.util.SharedConstants;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -35,6 +36,7 @@ public class Spleef {
 	@SubscribeEvent
 	public void onEvent(RegisterCommandsEvent event) {
 		if (SpleefConfig.INSTANCE.enabled.get()) {
+			SpleefCommand.register(event.getDispatcher());
 		}
 	}
 

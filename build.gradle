@@ -11,9 +11,9 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 
-version = "${project.minecraft}-${project.speedrunnersVersion}"
-archivesBaseName = project.speedrunnersId
-group = 'me.jaackson.speedrunners'
+version = "${project.minecraft}-${project.spleefVersion}"
+archivesBaseName = project.spleefId
+group = 'me.jaackson.spleef'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
@@ -25,7 +25,7 @@ minecraft {
         server {
             workingDirectory project.file('run')
             mods {
-                speedrunners {
+                spleef {
                     source sourceSets.main
                 }
             }
@@ -45,11 +45,11 @@ dependencies {
 }
 
 processResources {
-    inputs.property("modVersion", project.speedrunnersVersion)
-    inputs.property("modId", project.speedrunnersId)
+    inputs.property("modVersion", project.spleefVersion)
+    inputs.property("modId", project.spleefId)
     from(sourceSets.main.resources.srcDirs) {
         include 'META-INF/mods.toml'
-        expand 'modVersion': project.speedrunnersVersion, 'modId': project.speedrunnersId
+        expand 'modVersion': project.spleefVersion, 'modId': project.spleefId
     }
 
     from(sourceSets.main.resources.srcDirs) {
