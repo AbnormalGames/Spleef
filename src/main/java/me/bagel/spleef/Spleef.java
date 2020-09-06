@@ -1,6 +1,12 @@
 package me.bagel.spleef;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import me.bagel.spleef.game.command.SpleefCommand;
+import me.bagel.spleef.game.data.SpleefGameDataManager;
+import net.minecraft.client.Minecraft;
+import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.util.SharedConstants;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -15,13 +21,16 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(Spleef.MOD_ID)
 public class Spleef {
+	public static final Logger LOGGER = LogManager.getLogger();
 	public static final String MOD_ID = "spleef";
+	public static final SpleefGameDataManager SPLEEF_GAME_DATA_MANAGER = new SpleefGameDataManager();
 
 	public Spleef() {
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 		modBus.addListener(this::crashClient);
 		modBus.addListener(this::setup);
-
+		
+		((IReloadableResourceManager) Minecraft.getInstance().getResourceManager()).addReloadListener(SPLEEF_GAME_DATA_MANAGER);
 		SpleefConfig.init(ModLoadingContext.get());
 
 		MinecraftForge.EVENT_BUS.register(this);
